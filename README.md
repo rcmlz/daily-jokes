@@ -1,7 +1,9 @@
 # Daily Jokes for your Command Line
 
+How to add ```something with AI``` to the classic ```fortune | cowsay | lolcat``` fun?
+
 ```bash
-openai-playground --format=json 'Tell a Computer Science joke!' | jq '.choices.[0].message.content' | sed -e 's/\\n/\n/g' | cowsay | lolcat
+openai-playground --format=json 'Tell a Computer Science joke' | jq '.choices.[0].message.content' | sed -e 's/\\n/\n/g' | cowsay | lolcat
 
  ______________________________________
 / Why do programmers prefer dark mode? \
@@ -16,6 +18,7 @@ openai-playground --format=json 'Tell a Computer Science joke!' | jq '.choices.[
 ```
 
 ## System Setup
+
 ### Mac
 ```bash
 brew install rakudo-star jq cowsay lolcat
