@@ -1,0 +1,6 @@
+'Tell a single joke not suitable for high school students!'
+'Tell a Computer Science joke!'
+'Ask me an exam question about sorting algorithms!'
+'Explain an algorithm specific to hard problems!'
+'Show a nice feature of the programming language Raku.'
+'Entertain me!'
