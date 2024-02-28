@@ -3,7 +3,12 @@
 How to add ```something with AI``` to the classic ```fortune | cowsay | lolcat``` fun?
 
 ```bash
-openai-playground --format=json 'Tell a Computer Science joke' | jq '.choices.[0].message.content' | sed -e 's/\\n/\n/g' | cowsay | lolcat
+mistralai-playground --max-tokens=1024 --format=json \
+  'Tell a Computer Science joke!' \
+  | jq '.choices.[0].message.content' \
+  | sed -e 's/\\n/\n/g' -e 's/"//g' \
+  | cowsay \
+  | lolcat
 
  ______________________________________
 / Why do programmers prefer dark mode? \
@@ -61,13 +66,13 @@ Go to https://console.mistral.ai/api-keys/ or https://platform.openai.com/api-ke
 For command line use I will abbreviate ```daily joke``` to ```dj```. Creating an alias makes it easy to call the entire chain.
 
 ```bash
-alias dj-by-mistral="mistralai-playground --format=json 'Tell a Computer Science joke!' | jq '.choices.[0].message.content' | sed -e 's/\\n/\n/g' | cowsay | lolcat"
+alias dj-by-mistral="mistralai-playground --max-tokens=1024 --format=json 'Tell a Computer Science joke!' | jq '.choices.[0].message.content' | sed -e 's/\\n/\n/g' | cowsay | lolcat"
 ```
 
 or like this, if you are using OpenAI
 
 ```bash
-alias dj-by-openai="openai-playground --format=json 'Tell a Computer Science joke!' | jq '.choices.[0].message.content' | sed -e 's/\\n/\n/g' | cowsay | lolcat"
+alias dj-by-openai="openai-playground --max-tokens=1024 --format=json 'Tell a Computer Science joke!' | jq '.choices.[0].message.content' | sed -e 's/\\n/\n/g' | cowsay | lolcat"
 ```
 
 In case you want to read a joke every time you start a shell, store the alias definition and the command call.
@@ -106,7 +111,11 @@ cat prompts.txt
 and select one randomly when calling the LLM. Of course, you can also do some serious learning every day ...
 
 ```bash
-openai-playground --format="json" `shuf -n 1 /path/to/prompts.txt` | jq '.choices.[0].message.content' | sed -e 's/\\n/\n/g' -e 's/"//g' | cowsay | lolcat
+openai-playground --max-tokens=1024 --format="json" `shuf -n 1 /path/to/prompts.txt` \
+| jq '.choices.[0].message.content' \
+| sed -e 's/\\n/\n/g' -e 's/"//g' \
+| cowsay \
+| lolcat
 
  _________________________________________
 / "One nice feature of the programming    \
@@ -134,7 +143,12 @@ openai-playground --format="json" `shuf -n 1 /path/to/prompts.txt` | jq '.choice
 If you are tired of cows, use a random animal from e.g. ```/usr/local/Cellar/cowsay/*/share/cows``` or maybe ```/usr/share/cowsay/cows/```.
 
 ```bash
-openai-playground --format="json" 'Entertain me!' | jq '.choices.[0].message.content' | sed -e 's/\\n/\n/g' -e 's/"//g' | cowsay -f $(ls /usr/local/Cellar/cowsay/*/share/cows | shuf -n1) | lolcat
+openai-playground --max-tokens=1024 --format="json" \
+'Entertain me!' \
+| jq '.choices.[0].message.content' \
+| sed -e 's/\\n/\n/g' -e 's/"//g' \
+| cowsay -f $(ls /usr/local/Cellar/cowsay/*/share/cows | shuf -n1) \
+| lolcat
 ```
 
 Have fun!
