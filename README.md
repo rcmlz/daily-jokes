@@ -3,7 +3,7 @@
 How to add ```something with AI``` to the classic ```fortune | cowsay | lolcat``` fun?
 
 ```bash
-mistralai-playground --max-tokens=1024 --format=json \
+openai-playground --max-tokens=1024 --format=json \
   'Tell a Computer Science joke!' \
   | jq '.choices.[0].message.content' \
   | sed -e 's/\\n/\n/g' -e 's/"//g' \
@@ -44,22 +44,33 @@ apt-get install rakudo-star jq cowsay lolcat
 
 ## LLM Setup
 
-The command line tools [mistralai-playground](https://raku.land/zef:antononcube/WWW::MistralAI) and [openai-playground](https://raku.land/zef:antononcube/WWW::OpenAI) allow easy access to the Large Language Models (LLM).
+Currently you can choose from the following LLM back-ends:
+
+- [WWW::OpenAI](https://raku.land/zef:antononcube/WWW::OpenAI)
+- [WWW::PaLM](https://raku.land/zef:antononcube/WWW::PaLM)
+- [WWW::Gemini](https://raku.land/zef:antononcube/WWW::Gemini)
+- [WWW::LLaMA](https://raku.land/zef:antononcube/WWW::LLaMA)
+- [WWW::MistralAI](https://raku.land/zef:antononcube/WWW::MistralAI)
+
+Llama ([llamafile](https://simonwillison.net/2023/Nov/29/llamafile/)) runs also locally - in case you need some privacy!
+
+You can file a request [here](https://github.com/antononcube/Raku-LLM-Functions) in case you need another LLM back-end.
+
+The command line tools [mistralai-playground](https://raku.land/zef:antononcube/WWW::MistralAI), [openai-playground](https://raku.land/zef:antononcube/WWW::OpenAI) etc. allow easy access to the specific Large Language Models (LLM).
 
 ```bash
-zef install WWW::OpenAI WWW::MistralAI
+zef install WWW::OpenAI WWW::MistralAI WWW::PaLM WWW::LLaMA
 ```
-
-Llama ([llamafile](https://simonwillison.net/2023/Nov/29/llamafile/)) can also be used with WWW::OpenAI, in case you want to run the LLM locally.
 
 For easy access expose your API keys via environment variables. When using Bash do e.g.
 
 ```bash
 echo 'export MISTRAL_API_KEY=some-key' >> $HOME/.bashrc
 echo 'export OPENAI_API_KEY=some-other-key' >> $HOME/.bashrc
+etc.
 ```
 
-Go to https://console.mistral.ai/api-keys/ or https://platform.openai.com/api-keys to setup your keys.
+Go to https://console.mistral.ai/api-keys/ or https://platform.openai.com/api-keys etc. to setup your keys.
 
 ## Bash Setup
 
