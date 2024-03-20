@@ -59,7 +59,7 @@ You can file a request [here](https://github.com/antononcube/Raku-LLM-Functions)
 The command line tools [mistralai-playground](https://raku.land/zef:antononcube/WWW::MistralAI), [openai-playground](https://raku.land/zef:antononcube/WWW::OpenAI) etc. allow easy access to the specific Large Language Models (LLM).
 
 ```bash
-zef install WWW::OpenAI WWW::MistralAI WWW::PaLM WWW::LLaMA
+zef install WWW::OpenAI WWW::MistralAI WWW::PaLM WWW::LLaMA WWW::Gemini
 ```
 
 For easy access expose your API keys via environment variables. When using Bash do e.g.
